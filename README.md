@@ -1,6 +1,12 @@
 # DropdownMenu
 下拉菜单
 
+<video id="video" controls="" preload="none">
+<source id="mp4" src="https://github.com/LynnCheng/DropdownMenu/blob/master/1.mov" type="video/mp4">
+</video>
+
+
+
 示例代码：
 ```
     let barButton = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(showMenu(sender:)))
