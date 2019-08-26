@@ -4,7 +4,7 @@
 <video id="video" controls="" preload="none">
 <source id="mp4" src="https://github.com/LynnCheng/DropdownMenu/blob/master/1.mov" type="video/mp4">
 </video>
-![avatar](1.gif)
+![avatar](https://github.com/LynnCheng/DropdownMenu/blob/master/1.gif)
 
 
 示例代码：
