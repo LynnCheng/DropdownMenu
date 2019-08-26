@@ -1,10 +1,12 @@
 # DropdownMenu
-下拉菜单
+点击按钮显示下拉菜单，支持的按钮类型包括UIButton和UIBarButtonItem。
 
-<img src="https://github.com/LynnCheng/DropdownMenu/blob/master/1.gif" width="216" height="384" alt="效果图" align=center>
+##效果图：
+<center class="half">
+    <img src="https://github.com/LynnCheng/DropdownMenu/blob/master/2.gif" width="216" height="384" alt="效果图" align=center><img src="https://github.com/LynnCheng/DropdownMenu/blob/master/3.gif" width="216" height="384" alt="效果图" align=center>
+</center>
 
-
-示例代码：
+##示例代码：
 ```
     let barButton = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(showMenu(sender:)))
     ......
