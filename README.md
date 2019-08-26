@@ -2,8 +2,8 @@
 点击按钮显示下拉菜单，支持的按钮类型包括UIButton和UIBarButtonItem。
 
 ##效果图：
-<center class="half">
-    <img src="https://github.com/LynnCheng/DropdownMenu/blob/master/2.gif" width="216" height="384" alt="效果图" align=center><img src="https://github.com/LynnCheng/DropdownMenu/blob/master/3.gif" width="216" height="384" alt="效果图" align=center>
+<center>
+<img src="https://github.com/LynnCheng/DropdownMenu/blob/master/2.gif" width="216" height="384"><img src="https://github.com/LynnCheng/DropdownMenu/blob/master/3.gif" width="216" height="384">
 </center>
 
 ##示例代码：
