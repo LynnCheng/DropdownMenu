@@ -1,10 +1,7 @@
 # DropdownMenu
 下拉菜单
 
-<video id="video" controls="" preload="none">
-<source id="mp4" src="https://github.com/LynnCheng/DropdownMenu/blob/master/1.mov" type="video/mp4">
-</video>
-![avatar](https://github.com/LynnCheng/DropdownMenu/blob/master/1.gif)
+<img src="https://github.com/LynnCheng/DropdownMenu/blob/master/1.gif" width="216" height="384" alt="效果图" align=center>
 
 
 示例代码：
