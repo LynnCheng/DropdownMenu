@@ -13,11 +13,13 @@ class DropdownMenu: UIView {
     var titles:[String]
     var images:[String]
     var point:CGPoint
+    var callback:(Int) -> Void
     
-    init(point:CGPoint, titles:[String]? = nil, images:[String]? = nil) {
+    init(point:CGPoint, titles:[String]? = nil, images:[String]? = nil, block:@escaping (_ index: Int)->Void) {
         self.titles = titles ?? []
         self.images = images ?? []
         self.point = point
+        self.callback = block
 
         super.init(frame: CGRect(origin: CGPoint.zero, size: CGSize(width: screenWidth, height: screenHeight)))
         self.backgroundColor = UIColor.white.withAlphaComponent(0)
@@ -31,7 +33,7 @@ class DropdownMenu: UIView {
         }
         
         if !self.images.isEmpty {
-            width += 100
+            width += 70
         } else {
             width += 40
         }
@@ -88,7 +90,7 @@ class DropdownMenu: UIView {
     
     func dissmiss() {
         weak var weakSelf = self
-        UIView.animate(withDuration: 0.5, animations: {
+        UIView.animate(withDuration: 0.3, animations: {
             weakSelf?.layer.setAffineTransform(CGAffineTransform.init(scaleX: 0.1, y: 0.1))
             weakSelf?.alpha = 0
         }) { (_) in
@@ -122,13 +124,15 @@ extension DropdownMenu: UITableViewDelegate,UITableViewDataSource  {
             let image = images[indexPath.row]
             cell.imageView?.image = UIImage(named: image)
             
-            let imageSize = CGSize(width: 30, height: 30)
-            UIGraphicsBeginImageContextWithOptions(imageSize, false, UIScreen.main.scale)
-            let imageRect = CGRect(x: 0.0, y: 0.0, width: imageSize.width, height: imageSize.height)
-            cell.imageView?.image?.draw(in: imageRect)
-            cell.imageView?.image = UIGraphicsGetImageFromCurrentImageContext()
-            UIGraphicsEndImageContext();
+//            let imageSize = CGSize(width: 17, height: 17)
+//            UIGraphicsBeginImageContextWithOptions(imageSize, false, UIScreen.main.scale)
+//            let imageRect = CGRect(x: 0.0, y: 0.0, width: imageSize.width, height: imageSize.height)
+//            cell.imageView?.image?.draw(in: imageRect)
+//            cell.imageView?.image = UIGraphicsGetImageFromCurrentImageContext()
+//            UIGraphicsEndImageContext();
         }
+        
+        cell.separatorInset = UIEdgeInsets(top: 0, left: 15, bottom: 0, right: 15)
         return cell
     }
     
@@ -136,27 +140,30 @@ extension DropdownMenu: UITableViewDelegate,UITableViewDataSource  {
         self.dissmiss()
         let cell = self.tableView(tableView, cellForRowAt: indexPath)
         cell.isSelected = false
+        
+        callback(indexPath.row)
     }
 }
 
 extension UIBarButtonItem {
-    func showMenu(titles:[String]? = nil, images:[String]? = nil) {
+    func showMenu(titles:[String]? = nil, images:[String]? = nil, block:@escaping (_ index: Int)->Void) {
         let window = UIApplication.shared.windows.first
         if let view = self.value(forKey: "_view") as? UIView {
             let point = CGPoint(x: view.frame.minX+view.frame.width/2, y: view.bounds.maxY)
             let frame = view.convert(point, to: window!)
-            let menu = DropdownMenu(point: frame, titles: titles, images: images)
+            let menu = DropdownMenu(point: frame, titles: titles, images: images, block: block)
             window?.addSubview(menu)
         }
     }
 }
 
 extension UIButton {
-    func showMenu(titles:[String]? = nil, images:[String]? = nil) {
+    func showMenu(titles:[String]? = nil, images:[String]? = nil, block:@escaping (_ index: Int)->Void) {
         let window = UIApplication.shared.windows.first
-        let point = CGPoint(x: self.frame.minX+self.frame.width/2, y: self.bounds.maxY)
+        let point = CGPoint(x: self.frame.width/2, y: self.bounds.maxY)
         let frame = self.convert(point, to: window!)
-        let menu = DropdownMenu(point: frame, titles: titles, images: images)
+        let menu = DropdownMenu(point: frame, titles: titles, images: images, block: block)
         window?.addSubview(menu)
     }
 }
+
